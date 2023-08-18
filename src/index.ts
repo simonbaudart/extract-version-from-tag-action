@@ -5,6 +5,7 @@ import { ExecOptions } from '@actions/exec/lib/interfaces';
 const MAJOR: string = 'MAJOR';
 const MINOR: string = 'MINOR';
 const PATCH: string = 'PATCH';
+const REVISION: string = 'REVISION';
 const PRE_RELEASE: string = 'PRE_RELEASE';
 const NUMBER_OF_COMMITS: string = 'NUMBER_OF_COMMITS';
 const NUMBER_OF_COMMITS_SINCE_TAG: string = 'NUMBER_OF_COMMITS_SINCE_TAG';
@@ -73,6 +74,15 @@ function formatSemanticValuesFromTag(tag: String) {
     core.exportVariable(MAJOR, versionsIndicator[0]);
     core.exportVariable(MINOR, versionsIndicator[1]);
     core.exportVariable(PATCH, versionsIndicator[2]);
+
+    if (versionsIndicator.length > 2)
+    {
+        core.exportVariable(REVISION, versionsIndicator[3]);
+    }
+    else
+    {
+        core.exportVariable(REVISION, '');
+    }
 }
 
 async function getNumberOfCommits(): Promise<void> {
