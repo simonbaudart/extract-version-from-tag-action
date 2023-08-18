@@ -27,7 +27,7 @@ async function main(): Promise<void> {
             core.setFailed(`No valid tag found: ${tag}`)
         }
 
-    } catch (error) {
+    } catch (error: any) {
         core.setFailed(error.message);
     }
 }
